@@ -15,6 +15,23 @@ int main() {
     cout << "Welcome to the database! Are you a new or returning member?";
     cout << "Type 'new' for new member or 'returning' for returning member: ";
 
+    string memberType;
+    cin >> memberType;
+    if (memberType == "returning") {
+        // returning member login
+        cout << "Enter username: ";
+        cin >> username;
+
+        cout << "Enter password: ";
+        cin >> password;
+
+        cout << "Welcome back, " + username + "!" << endl;
+        return 0;
+    } else (memberType == "new") {
+        
+
+
+
     // asking user for credentials then storing
     cout << "Enter ID: ";
     cin >> id;
@@ -35,12 +52,7 @@ int main() {
 
 
 
-
-
-
-
-
     return 0;
 
-    
+    }
 }
