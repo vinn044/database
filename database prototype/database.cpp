@@ -27,9 +27,7 @@ int main() {
 
         cout << "Welcome back, " + username + "!" << endl;
         return 0;
-    } else (memberType == "new") {
-        
-
+    } else if (memberType == "new") {
 
 
     // asking user for credentials then storing
