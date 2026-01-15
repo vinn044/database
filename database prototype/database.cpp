@@ -16,10 +16,10 @@ int main() {
     cout << "Type 'new' for new member or 'returning' for returning member: ";
 
     string memberType;
-    string filename = "database.txt"; // my desired file name
+    string filename = "userstorage.txt"; // my desired file name
     ofstream myFile(filename); // open file for writing
 
-    myFile << "ID,Name,Age,Username,Password\n"; // write header to file
+    
     
     cin >> memberType;
     if (memberType == "returning") {
@@ -54,6 +54,8 @@ int main() {
 
     cout << "password: ";
     cin >> password;
+
+        myFile << id << "," << name << "," << age << "," << username << "," << password << "\n"; // write to the file
 
 
     myFile.close(); // close the file after writing
