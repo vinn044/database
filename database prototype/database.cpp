@@ -17,12 +17,13 @@ int main() {
 
     string memberType;
     string filename = "userstorage.txt"; // my desired file name
-    ofstream myFile(filename); // open file for writing
+    ofstream myFile(filename, ios::app); // open file in append mode for data persistence
 
     
     
     cin >> memberType;
     if (memberType == "returning") {
+
         // returning member login
         cout << "Enter username: ";
         cin >> username;
@@ -55,7 +56,7 @@ int main() {
     cout << "password: ";
     cin >> password;
 
-        myFile << id << "," << name << "," << age << "," << username << "," << password << "\n"; // write to the file
+        myFile << id << "," << name << "," << age << "," << username << "," << password << "\n"; // write necessary data to the file
 
 
     myFile.close(); // close the file after writing
