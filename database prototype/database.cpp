@@ -16,11 +16,20 @@ int main() {
     cout << "Type 'new' for new member or 'returning' for returning member: ";
 
     string memberType;
+    string filename = "database.txt"; // my desired file name
+    ofstream myFile(filename); // open file for writing
+
+    myFile << "ID,Name,Age,Username,Password\n"; // write header to file
+    
     cin >> memberType;
     if (memberType == "returning") {
         // returning member login
         cout << "Enter username: ";
         cin >> username;
+        
+        
+        
+
 
         cout << "Enter password: ";
         cin >> password;
@@ -46,6 +55,8 @@ int main() {
     cout << "password: ";
     cin >> password;
 
+
+    myFile.close(); // close the file after writing
     cout << "Welcome" + name + "! You are now a member of the database" << endl;
 
 
