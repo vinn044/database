@@ -35,8 +35,26 @@ int main() {
         cout << "Enter password: ";
         cin >> password;
 
-        cout << "Welcome back, " + username + "!" << endl;
-        return 0;
+        // Check if the username and password match the stored data
+        ifstream checkFile(filename);
+        string line;
+        bool found = false;
+        while (getline(checkFile, line)) {
+            if (line.find("Username: " + username) != string::npos && line.find("Password: " + password) != string::npos) {
+                found = true;
+                break;
+            }
+        }
+        checkFile.close();
+
+        if (found) {
+            cout << "Welcome back, " + username + "!" << endl;
+            return 0;
+        } else {
+            cout << "Invalid username or password." << endl;
+            return 1;
+        }
+        
     } else if (memberType == "new") {
 
 
