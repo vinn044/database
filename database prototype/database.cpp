@@ -12,7 +12,7 @@ int main() {
 
 
 
-    cout << "Welcome to the database! Are you a new or returning member?";
+    cout << "Welcome to the database! Are you a new or returning member? ";
     cout << "Type 'new' for new member or 'returning' for returning member: ";
 
     string memberType;
@@ -56,7 +56,7 @@ int main() {
     cout << "password: ";
     cin >> password;
 
-        myFile << id << "," << name << "," << age << "," << username << "," << password << "\n"; // write necessary data to the file
+        myFile << "ID: " << id << "," << "Name: " << name << "," << "Age: " << age << "," << "Username: " << username << "," << "Password: " << password << "\n";
 
 
     myFile.close(); // close the file after writing
