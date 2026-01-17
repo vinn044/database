@@ -42,6 +42,30 @@ int main() {
         while (getline(checkFile, line)) {
             if (line.find("Username: " + username) != string::npos && line.find("Password: " + password) != string::npos) {
                 found = true;
+
+                // Extract user details from the line
+                size_t idPos = line.find("ID: ");
+                size_t namePos = line.find("Name: ");
+                size_t agePos = line.find("Age: ");
+
+                // Extract ID
+                if (idPos != string::npos) {
+                    id = stoi(line.substr(idPos + 4));
+                }
+                // Extract Name
+                if (namePos != string::npos) {
+                    size_t nameStart = namePos + 6;
+                    size_t nameEnd = line.find(",", nameStart);
+                    name = line.substr(nameStart, nameEnd - nameStart);
+                }
+                // Extract Age
+                if (agePos != string::npos) {
+                    size_t ageStart = agePos + 5;
+                    size_t ageEnd = line.find(",", ageStart);
+                    if (ageEnd == string::npos) ageEnd = line.length();
+                    age = stoi(line.substr(ageStart, ageEnd - ageStart));
+                }
+
                 break;
             }
         }
@@ -60,6 +84,13 @@ int main() {
             if (option == 1) {
                 // View Profile
                 cout << "Viewing Profile..." << endl;
+                cout << "Here is your profile information:" << endl;
+                cout << "ID: " << id << endl;
+                cout << "Name: " << name << endl;
+                cout << "Age: " << age << endl;
+                cout << "Username: " << username << endl;
+                cout << "Password: " << password << endl;
+
             } else if (option == 2) {
                 // Update Profile
                 cout << "Updating Profile..." << endl;
