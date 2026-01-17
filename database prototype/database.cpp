@@ -49,10 +49,30 @@ int main() {
 
         if (found) {
             cout << "Welcome back, " + username + "!" << endl;
-            return 0;
+            cout << "Select an option below: " << endl;
+            cout << "1. View Profile" << endl;
+            cout << "2. Update Profile" << endl;
+            cout << "3. Delete Profile" << endl;
+            cout << "4. Exit" << endl;
+            int option;
+            cin >> option;
+            
+            if (option == 1) {
+                // View Profile
+                cout << "Viewing Profile..." << endl;
+            } else if (option == 2) {
+                // Update Profile
+                cout << "Updating Profile..." << endl;
+            } else if (option == 3) {
+                // Delete Profile
+                cout << "Deleting Profile..." << endl;
+            } else if (option == 4) {
+                // Exit
+                cout << "Exiting..." << endl;
+            }
+
         } else {
             cout << "Invalid username or password." << endl;
-            return 1;
         }
         
     } else if (memberType == "new") {
