@@ -125,6 +125,30 @@ int main() {
             
             } else if (option == 3) {
                 // Delete Profile
+                cout << "Are you sure you want to delete your profile? (yes/no): ";
+                string confirm;
+                cin >> confirm;
+
+                if (confirm == "yes") {
+                    // Rewrite the file without the deleted user info
+                    ifstream inputFile(filename);
+                    ofstream tempFile("temp.txt");
+                    string fileLine;
+                    while (getline(inputFile, fileLine)) {
+                        if (fileLine.find("ID: " + to_string(id)) == string::npos) {
+                            tempFile << fileLine << "\n";
+                        }
+                    }
+                    inputFile.close();
+                    tempFile.close();
+                    remove(filename.c_str());
+                    rename("temp.txt", filename.c_str());
+                    cout << "Profile deleted successfully." << endl;
+                } else {
+                    cout << "Profile deletion canceled." << endl;
+                }
+
+            
                 cout << "Deleting Profile..." << endl;
             } else if (option == 4) {
                 // Exit
