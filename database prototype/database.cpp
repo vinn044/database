@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdio>
 using namespace std;
 
 int main() {
@@ -16,10 +17,7 @@ int main() {
     cout << "Type 'new' for new member or 'returning' for returning member: ";
 
     string memberType;
-    string filename = "userstorage.txt"; // my desired file name
-    ofstream myFile(filename, ios::app); // open file in append mode for data persistence
-
-    
+    string filename = "userstorage.txt";
     
     cin >> memberType;
     if (memberType == "returning") {
@@ -93,7 +91,38 @@ int main() {
 
             } else if (option == 2) {
                 // Update Profile
-                cout << "Updating Profile..." << endl;
+
+                cout << "What changes would you like to make to your account?: " << endl;
+                cout << "1. Change Username" << endl;
+                cout << "2. Change Password" << endl;
+                int updateOption;
+                cin >> updateOption;
+                if (updateOption == 1) {
+                    cout << "Enter new username: ";
+                    cin >> username;
+                    cout << "Username updated successfully!" << endl;
+                } else if (updateOption == 2) {
+                    cout << "Enter new password: ";
+                    cin >> password;
+                    cout << "Password updated successfully!" << endl;
+                }
+                
+                // Rewrite the file with updated user info
+                ifstream inputFile(filename);
+                ofstream tempFile("temp.txt");
+                string fileLine;
+                while (getline(inputFile, fileLine)) {
+                    if (fileLine.find("ID: " + to_string(id)) != string::npos) {
+                        tempFile << "ID: " << id << "," << "Name: " << name << "," << "Age: " << age << "," << "Username: " << username << "," << "Password: " << password << "\n";
+                    } else {
+                        tempFile << fileLine << "\n";
+                    }
+                }
+                inputFile.close();
+                tempFile.close();
+                remove(filename.c_str());
+                rename("temp.txt", filename.c_str());
+            
             } else if (option == 3) {
                 // Delete Profile
                 cout << "Deleting Profile..." << endl;
@@ -105,7 +134,7 @@ int main() {
         } else {
             cout << "Invalid username or password." << endl;
         }
-        
+
     } else if (memberType == "new") {
 
 
@@ -125,10 +154,9 @@ int main() {
     cout << "password: ";
     cin >> password;
 
-        myFile << "ID: " << id << "," << "Name: " << name << "," << "Age: " << age << "," << "Username: " << username << "," << "Password: " << password << "\n";
-
-
-    myFile.close(); // close the file after writing
+    ofstream myFile(filename, ios::app);
+    myFile << "ID: " << id << "," << "Name: " << name << "," << "Age: " << age << "," << "Username: " << username << "," << "Password: " << password << "\n";
+    myFile.close();
     cout << "Welcome" + name + "! You are now a member of the database" << endl;
 
 
